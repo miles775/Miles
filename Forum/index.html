@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAAN? Forum</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <img src="images/1.png" alt="ParaSaKomyuter Logo" class="logo">
+            <h2>Profile</h2>
+            <div class="user-info">
+                <img src="user-icon.png" alt="User Icon" class="user-icon">
+                <span class="username">@user1</span>
+            </div>
+            <div class="trust-rating">
+                <p>Komyuter trust this account: 2</p>
+                <div class="stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+            </div>
+            <div class="comments-section">
+                <h3>Comments</h3>
+                <p class="comment">sakay ka project 8 tas baba ka...</p>
+            </div>
+            <div class="navigation">
+                <button class="nav-item add-post-btn">+ Add Post</button>
+                <button class="nav-item">Saan? Magkano?</button>
+                <button class="nav-item">Komyuter's Experience</button>
+                <button class="nav-item">Travel Time</button>
+                <button class="nav-item">Your Route</button>
+            </div>
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="main-content">
+            <div class="header">
+                <h1>SAAN?</h1>
+            </div>
+            <div class="posts-container">
+                <!-- Post Template -->
+                <div class="post">
+                    <div class="post-header">
+                        <img src="user-icon.png" alt="User Icon" class="user-icon-small">
+                        <span class="username">@user1</span>
+                        <span class="featured-badge">★</span>
+                    </div>
+                    <div class="post-content">
+                        <p>Paano pumunta sa UP Diliman from Tondo?</p>
+                    </div>
+                    <button class="reply-btn">Reply</button>
+                </div>
+                <!-- More posts will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="settings-section">
+            <h2>Setting</h2>
+            <div class="settings-options">
+                <button class="setting-btn">Your Account</button>
+                <div class="theme-options">
+                    <button class="setting-btn">Theme</button>
+                    <div class="theme-buttons">
+                        <button class="theme-btn black" onclick="setTheme('dark')"></button>
+                        <button class="theme-btn red" onclick="setTheme('red')"></button>
+                        <button class="theme-btn teal" onclick="setTheme('light')"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-section">
+                <p>We'd love to hear your feedback and suggestions to help us improve ParaSaKomyuter.</p>
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="post-creation-popup">
+        <h2>Create a New Post</h2>
+        <textarea placeholder="What's your question?"></textarea>
+        <div class="image-upload">
+            <label for="post-image" class="image-upload-label">
+                <span class="upload-icon">📷</span>
+                <span>Add Image</span>
+            </label>
+            <input type="file" id="post-image" accept="image/*" style="display: none;">
+            <div class="image-preview" style="display: none;">
+                <img id="preview-image" src="" alt="Preview">
+                <button class="remove-image">×</button>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="cancel-post">Cancel</button>
+            <button class="submit-post">Post</button>
+        </div>
+    </div>
+
+    </div>
+    <script src="script.js"></script>
+    </body>
+    </html>

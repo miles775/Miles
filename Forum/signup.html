@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - SAAN? Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .signup-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--beige);
+            border-radius: 20px;
+            border: 2px solid var(--teal);
+            text-align: center;
+        }
+
+        .logo {
+            width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .signup-form input {
+            padding: 12px;
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .country-code {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .country-code img {
+            width: 24px;
+            height: 16px;
+        }
+
+        .signup-btn {
+            background-color: var(--teal);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .signup-btn:hover {
+            background-color: var(--dark-teal);
+        }
+
+        .login-link {
+            margin-top: 20px;
+            color: var(--text-dark);
+        }
+
+        .login-link a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <img src="images/1.png" alt="ParaSaKomyuter Logo" class="logo">
+        <h2>Create an Account</h2>
+        <form class="signup-form" id="signupForm">
+            <div class="country-code">
+                <img src="https://flagcdn.com/ph.svg" alt="Philippines Flag">
+                <input type="text" value="+63" readonly style="width: 60px;">
+                <input type="text" id="phone" placeholder="Phone Number" required>
+            </div>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <p class="error-message" id="errorMessage"></p>
+        <p class="login-link">
+            Already have an account? <a href="login.html">Log in</a>
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const signupForm = document.getElementById('signupForm');
+            const errorMessage = document.getElementById('errorMessage');
+
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const phone = document.getElementById('phone').value;
+
+                try {
+                    const response = await fetch('/api/users/signup', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            username,
+                            password,
+                            phoneNumber: `+63${phone}`
+                        })
+                    });
+
+                    if (response.ok) {
+                        // Redirect to main interface on successful signup
+                        window.location.href = 'index.html';
+                    } else {
+                        const data = await response.text();
+                        errorMessage.textContent = data || 'Error creating account';
+                        errorMessage.style.display = 'block';
+                    }
+                } catch (error) {
+                    errorMessage.textContent = 'An error occurred. Please try again.';
+                    errorMessage.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

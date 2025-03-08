@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saan? Magkano? - SAAN? Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .magkano-container {
+            background-color: var(--beige);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid var(--teal);
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .magkano-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .magkano-header h1 {
+            color: var(--teal);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .transport-option {
+            background-color: var(--dark-teal);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: white;
+        }
+
+        .transport-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-icon {
+            font-size: 24px;
+        }
+
+        .transport-label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+    <style>
+        .back-btn {
+            background-color: var(--teal);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: var(--dark-teal);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="magkano-container">
+            <button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
+            <div class="magkano-header">
+                <h1>MAGKANO?</h1>
+                <p>Select your preferred mode of transportation</p>
+            </div>
+            <div class="transport-grid">
+                <div class="transport-option" id="jeepney-option">
+                    <span class="transport-icon">🚐</span>
+                    <span class="transport-label">Jeepney</span>
+                </div>
+                <div class="transport-option" id="train-option">
+                    <span class="transport-icon">🚂</span>
+                    <span class="transport-label">Train</span>
+                </div>
+                <div class="transport-option" id="bus-option">
+                    <span class="transport-icon">🚌</span>
+                    <span class="transport-label">Bus</span>
+                </div>
+                <div class="transport-option" id="e-jeep-option">
+                    <span class="transport-icon">🚐</span>
+                    <span class="transport-label">E-Jeep</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SAAN? Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--beige);
+            border-radius: 20px;
+            border: 2px solid var(--teal);
+            text-align: center;
+        }
+
+        .logo {
+            width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .login-form input {
+            padding: 12px;
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .login-btn {
+            background-color: var(--teal);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: var(--dark-teal);
+        }
+
+        .create-account {
+            margin-top: 20px;
+            color: var(--text-dark);
+        }
+
+        .create-account a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="images/1.png" alt="ParaSaKomyuter Logo" class="logo">
+        <form class="login-form">
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <p class="create-account">
+            Don't have an account? <a href="signup.html">Create one</a>
+        </p>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('.login-form');
+    const errorMessage = document.createElement('p');
+    errorMessage.className = 'error-message';
+    errorMessage.style.color = 'red';
+    errorMessage.style.display = 'none';
+    loginForm.appendChild(errorMessage);
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = loginForm.querySelector('input[type="text"]').value;
+        const password = loginForm.querySelector('input[type="password"]').value;
+
+        try {
+            const response = await fetch('/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                // Redirect to main interface on successful login
+                window.location.href = 'index.html';
+            } else {
+                const data = await response.text();
+                errorMessage.textContent = data || 'Invalid username or password';
+                errorMessage.style.display = 'block';
+            }
+        } catch (error) {
+            errorMessage.textContent = 'An error occurred. Please try again.';
+            errorMessage.style.display = 'block';
+        }
+    });
+});
+</script>
+</body>
+</html>
